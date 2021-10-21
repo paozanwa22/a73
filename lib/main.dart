@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  var orang = Get.put(Orang());
-  // var orang = Orang();
+  // var orang = Orang(nama: 'brangkak', umur: 50).obs;
+  var orang = Get.put(Orang(nama: 'brangkak', umur: 50).obs);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Obx(
             () => Text(
-              'nama saya ${orang.nama}',
+              'nama saya ${orang.value.nama}',
               style: const TextStyle(
                 fontSize: 35,
               ),
@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            orang.nama.value = orang.nama.value.toUpperCase();
+            orang.update((_) {
+              orang.value.nama = orang.value.nama.toString().toUpperCase();
+            });
           },
         ),
       ),
