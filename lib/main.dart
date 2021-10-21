@@ -1,14 +1,12 @@
+import 'package:a73/models/orang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  var count = 0.obs;
-  void add() {
-    count++;
-  }
-
+  var orang = Get.put(Orang());
+  // var orang = Orang();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Obx(
             () => Text(
-              'angka $count',
+              'nama saya ${orang.nama}',
               style: const TextStyle(
                 fontSize: 35,
               ),
@@ -25,7 +23,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => add(),
+          onPressed: () {
+            orang.nama.value = orang.nama.value.toUpperCase();
+          },
         ),
       ),
     );
