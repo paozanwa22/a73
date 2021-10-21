@@ -1,12 +1,11 @@
-import 'package:a73/models/orang.dart';
+import './controllers/orang_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // var orang = Orang(nama: 'brangkak', umur: 50).obs;
-  var orang = Get.put(Orang(nama: 'brangkak', umur: 50).obs);
+  final orangc = Get.put(OrangController());
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Obx(
             () => Text(
-              'nama saya ${orang.value.nama}',
+              'nama saya ${orangc.orang.nama}',
               style: const TextStyle(
                 fontSize: 35,
               ),
@@ -24,9 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            orang.update((_) {
-              orang.value.nama = orang.value.nama.toString().toUpperCase();
-            });
+            orangc.changeUpperCase();
           },
         ),
       ),
