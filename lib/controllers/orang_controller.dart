@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import '../models/orang.dart';
 
 class OrangController extends GetxController {
-  var orang = Orang();
+  var orang = Orang(nama: 'brangkak', umur: 50).obs;
 
   void changeUpperCase() {
-    orang.nama.value = orang.nama.value.toString().toUpperCase();
+    orang.update((val) {
+      orang.value.nama = orang.value.nama.toString().toUpperCase();
+    });
   }
 }

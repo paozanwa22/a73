@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Obx(
             () => Text(
-              'nama saya ${orangc.orang.nama}',
+              'nama saya ${orangc.orang.value.nama}',
               style: const TextStyle(
                 fontSize: 35,
               ),
